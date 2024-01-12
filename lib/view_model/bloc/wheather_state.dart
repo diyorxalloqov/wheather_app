@@ -4,7 +4,7 @@ part of 'wheather_bloc.dart';
 class WheatherState extends Equatable {
   final ActionStatus status;
   final String error;
-  final List<Articles> news;
+  final List<Data> news;
   final WheaterModel? wheaterModel;
 
   const WheatherState(
@@ -14,7 +14,7 @@ class WheatherState extends Equatable {
       this.wheaterModel});
 
   WheatherState copyWith({
-    List<Articles>? news,
+    List<Data>? news,
     String? error,
     ActionStatus? status,
     WheaterModel? wheaterModel,

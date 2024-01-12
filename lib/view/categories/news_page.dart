@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wheather_news_app/utils/status.dart';
@@ -23,10 +24,33 @@ class _LocationState extends State<NewsPage> {
           child: Text(state.error),
         );
       } else if (state.status == ActionStatus.isSuccess) {
-        return Column(
-          children: [
-            
-          ],
+        return SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Center(
+                  child: Text(
+                "News",
+                style: TextStyle(color: Colors.white, fontSize: 30),
+              )),
+              Expanded(
+                  child: ListView.builder(
+                      itemCount: state.news.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          leading: CircleAvatar(
+                              backgroundImage: CachedNetworkImageProvider(state
+                                      .news[index].imageUrl
+                                      .toString() ??
+                                  'https://www.dutchcowboys.nl/uploads/posts/list/auto-620-c.jpg')),
+                          title: Text(
+                            state.news[index].title.toString(),
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                        );
+                      }))
+            ],
+          ),
         );
       } else {
         return const SizedBox.shrink(

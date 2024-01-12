@@ -1,95 +1,83 @@
-class NewsModel {
-  String? status;
-  int? totalResults;
-  List<Articles>? articles;
 
-  NewsModel({this.status, this.totalResults, this.articles});
+import 'package:hive/hive.dart';
 
-  NewsModel.fromJson(Map<String, dynamic> json) {
-    status = json['status'];
-    totalResults = json['totalResults'];
-    if (json['articles'] != null) {
-      articles = <Articles>[];
-      json['articles'].forEach((v) {
-        articles!.add(Articles.fromJson(v));
-      });
-    }
-  }
+part 'news_model.g.dart';
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['status'] = status;
-    data['totalResults'] = totalResults;
-    if (articles != null) {
-      data['articles'] = articles!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class Articles {
-  Source? source;
-  String? author;
+@HiveType(typeId: 0)
+class Data {
+  @HiveField(0)
+  String? uuid;
+  @HiveField(1)
   String? title;
+  @HiveField(2)
   String? description;
+  @HiveField(3)
+  String? keywords;
+  @HiveField(4)
+  String? snippet;
+  @HiveField(5)
   String? url;
-  String? urlToImage;
+  @HiveField(6)
+  String? imageUrl;
+  @HiveField(7)
+  String? language;
+  @HiveField(8)
   String? publishedAt;
-  String? content;
+  @HiveField(9)
+  String? source;
+  @HiveField(10)
+  List<String>? categories;
+  @HiveField(11)
+  dynamic relevanceScore;
+  @HiveField(12)
+  String? locale;
 
-  Articles(
-      {this.source,
-      this.author,
+  Data(
+      {this.uuid,
       this.title,
       this.description,
+      this.keywords,
+      this.snippet,
       this.url,
-      this.urlToImage,
+      this.imageUrl,
+      this.language,
       this.publishedAt,
-      this.content});
+      this.source,
+      this.categories,
+      this.relevanceScore,
+      this.locale});
 
-  Articles.fromJson(Map<String, dynamic> json) {
-    source =
-        json['source'] != null ? Source.fromJson(json['source']) : null;
-    author = json['author'];
+  Data.fromJson(Map<String, dynamic> json) {
+    uuid = json['uuid'];
     title = json['title'];
     description = json['description'];
+    keywords = json['keywords'];
+    snippet = json['snippet'];
     url = json['url'];
-    urlToImage = json['urlToImage'];
-    publishedAt = json['publishedAt'];
-    content = json['content'];
+    imageUrl = json['image_url'];
+    language = json['language'];
+    publishedAt = json['published_at'];
+    source = json['source'];
+    categories = json['categories'].cast<String>();
+    relevanceScore = json['relevance_score'];
+    locale = json['locale'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    if (source != null) {
-      data['source'] = source!.toJson();
-    }
-    data['author'] = author;
+    data['uuid'] = uuid;
     data['title'] = title;
     data['description'] = description;
+    data['keywords'] = keywords;
+    data['snippet'] = snippet;
     data['url'] = url;
-    data['urlToImage'] = urlToImage;
-    data['publishedAt'] = publishedAt;
-    data['content'] = content;
-    return data;
-  }
-}
-
-class Source {
-  String? id;
-  String? name;
-
-  Source({this.id, this.name});
-
-  Source.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['name'] = name;
+    data['image_url'] = imageUrl;
+    data['language'] = language;
+    data['published_at'] = publishedAt;
+    data['source'] = source;
+    data['categories'] = categories;
+    data['relevance_score'] = relevanceScore;
+    data['locale'] = locale;
     return data;
   }
 }
