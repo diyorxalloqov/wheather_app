@@ -14,6 +14,12 @@ class DBService {
   NewsService newsService = NewsService();
   WheatherService wheatherService = WheatherService();
 
+  Future<void> refreshNews() async {
+    await openbox();
+    await newsbox?.clear();
+    await getNews();
+  }
+
   Future<dynamic> checkNews() async {
     try {
       await openbox();
@@ -120,9 +126,5 @@ class DBService {
     } on HiveError catch (e) {
       print(e.message);
     }
-  }
-
-  Future<void>refreshNews()async{
-    
   }
 }

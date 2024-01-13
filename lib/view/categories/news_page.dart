@@ -18,16 +18,14 @@ class _LocationState extends State<NewsPage> {
     return BlocProvider(
       create: (context) => NewsBloc(),
       child: RefreshIndicator.adaptive(
-        onRefresh: () => DBService().checkNews(),
+        onRefresh: () => DBService().refreshNews(),
         child: BlocBuilder<NewsBloc, NewsState>(builder: (context, state) {
           if (state.status == ActionStatus.isLoading) {
             return const Center(
                 child: CircularProgressIndicator.adaptive(
                     backgroundColor: Colors.white));
           } else if (state.status == ActionStatus.isError) {
-            return Center(
-              child: Text(state.error),
-            );
+            return Center(child: Text(state.error));
           } else if (state.status == ActionStatus.isSuccess) {
             return SafeArea(
               child: Column(
