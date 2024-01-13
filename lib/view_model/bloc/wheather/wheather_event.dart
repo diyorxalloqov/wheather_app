@@ -12,9 +12,3 @@ class WheaterGetEvent extends WheatherEvent {
   List<Object?> get props => [];
 }
 
-class NewsGetEvent extends WheatherEvent {
-  const NewsGetEvent();
-  @override
-  // TODO: implement props
-  List<Object?> get props => [];
-}

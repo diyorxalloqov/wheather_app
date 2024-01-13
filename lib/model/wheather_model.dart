@@ -2,7 +2,7 @@ import 'package:hive/hive.dart';
 
 part 'wheather_model.g.dart';
 
-@HiveType(typeId: 0)
+@HiveType(typeId: 1)
 class WheaterModel {
   @HiveField(0)
   Coord? coord;
@@ -17,95 +17,56 @@ class WheaterModel {
   @HiveField(5)
   Wind? wind;
   @HiveField(6)
-  Rain? rain;
-  @HiveField(7)
   Clouds? clouds;
-  @HiveField(8)
+  @HiveField(7)
   int? dt;
-  @HiveField(9)
+  @HiveField(8)
   Sys? sys;
-  @HiveField(10)
+  @HiveField(9)
   int? timezone;
-  @HiveField(11)
+  @HiveField(10)
   int? id;
-  @HiveField(12)
+  @HiveField(11)
   String? name;
-  @HiveField(13)
+  @HiveField(12)
   int? cod;
 
-  WheaterModel(
-      {this.coord,
-      this.weather,
-      this.base,
-      this.main,
-      this.visibility,
-      this.wind,
-      this.rain,
-      this.clouds,
-      this.dt,
-      this.sys,
-      this.timezone,
-      this.id,
-      this.name,
-      this.cod});
+  WheaterModel({
+    this.coord,
+    this.weather,
+    this.base,
+    this.main,
+    this.visibility,
+    this.wind,
+    this.clouds,
+    this.dt,
+    this.sys,
+    this.timezone,
+    this.id,
+    this.name,
+    this.cod,
+  });
 
-  WheaterModel.fromJson(Map<String, dynamic> json) {
-    coord = json['coord'] != null ? Coord.fromJson(json['coord']) : null;
-    if (json['weather'] != null) {
-      weather = <Weather>[];
-      json['weather'].forEach((v) {
-        weather!.add(Weather.fromJson(v));
-      });
-    }
-    base = json['base'];
-    main = json['main'] != null ? Main.fromJson(json['main']) : null;
-    visibility = json['visibility'];
-    wind = json['wind'] != null ? Wind.fromJson(json['wind']) : null;
-    rain = json['rain'] != null ? Rain.fromJson(json['rain']) : null;
-    clouds = json['clouds'] != null ? Clouds.fromJson(json['clouds']) : null;
-    dt = json['dt'];
-    sys = json['sys'] != null ? Sys.fromJson(json['sys']) : null;
-    timezone = json['timezone'];
-    id = json['id'];
-    name = json['name'];
-    cod = json['cod'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (coord != null) {
-      data['coord'] = coord!.toJson();
-    }
-    if (weather != null) {
-      data['weather'] = weather!.map((v) => v.toJson()).toList();
-    }
-    data['base'] = base;
-    if (main != null) {
-      data['main'] = main!.toJson();
-    }
-    data['visibility'] = visibility;
-    if (wind != null) {
-      data['wind'] = wind!.toJson();
-    }
-    if (rain != null) {
-      data['rain'] = rain!.toJson();
-    }
-    if (clouds != null) {
-      data['clouds'] = clouds!.toJson();
-    }
-    data['dt'] = dt;
-    if (sys != null) {
-      data['sys'] = sys!.toJson();
-    }
-    data['timezone'] = timezone;
-    data['id'] = id;
-    data['name'] = name;
-    data['cod'] = cod;
-    return data;
+  factory WheaterModel.fromJson(Map<String, dynamic> json) {
+    return WheaterModel(
+      coord: Coord.fromJson(json['coord']),
+      weather: (json['weather'] as List).map((e) => Weather.fromJson(e)).toList(),
+      base: json['base'],
+      main: Main.fromJson(json['main']),
+      visibility: json['visibility'],
+      wind: Wind.fromJson(json['wind']),
+      clouds: Clouds.fromJson(json['clouds']),
+      dt: json['dt'],
+      sys: Sys.fromJson(json['sys']),
+      timezone: json['timezone'],
+      id: json['id'],
+      name: json['name'],
+      cod: json['cod'],
+    );
   }
 }
 
-@HiveType(typeId: 1)
+@HiveType(typeId: 2)
 class Coord {
   @HiveField(0)
   double? lon;
@@ -114,20 +75,15 @@ class Coord {
 
   Coord({this.lon, this.lat});
 
-  Coord.fromJson(Map<String, dynamic> json) {
-    lon = json['lon'];
-    lat = json['lat'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['lon'] = lon;
-    data['lat'] = lat;
-    return data;
+  factory Coord.fromJson(Map<String, dynamic> json) {
+    return Coord(
+      lon: json['lon'],
+      lat: json['lat'],
+    );
   }
 }
 
-@HiveType(typeId: 2)
+@HiveType(typeId: 3)
 class Weather {
   @HiveField(0)
   int? id;
@@ -140,24 +96,17 @@ class Weather {
 
   Weather({this.id, this.main, this.description, this.icon});
 
-  Weather.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    main = json['main'];
-    description = json['description'];
-    icon = json['icon'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['main'] = main;
-    data['description'] = description;
-    data['icon'] = icon;
-    return data;
+  factory Weather.fromJson(Map<String, dynamic> json) {
+    return Weather(
+      id: json['id'],
+      main: json['main'],
+      description: json['description'],
+      icon: json['icon'],
+    );
   }
 }
 
-@HiveType(typeId: 3)
+@HiveType(typeId: 4)
 class Main {
   @HiveField(0)
   double? temp;
@@ -172,36 +121,28 @@ class Main {
   @HiveField(5)
   int? humidity;
 
-  Main(
-      {this.temp,
-      this.feelsLike,
-      this.tempMin,
-      this.tempMax,
-      this.pressure,
-      this.humidity});
+  Main({
+    this.temp,
+    this.feelsLike,
+    this.tempMin,
+    this.tempMax,
+    this.pressure,
+    this.humidity,
+  });
 
-  Main.fromJson(Map<String, dynamic> json) {
-    temp = json['temp'];
-    feelsLike = json['feels_like'];
-    tempMin = json['temp_min'];
-    tempMax = json['temp_max'];
-    pressure = json['pressure'];
-    humidity = json['humidity'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['temp'] = temp;
-    data['feels_like'] = feelsLike;
-    data['temp_min'] = tempMin;
-    data['temp_max'] = tempMax;
-    data['pressure'] = pressure;
-    data['humidity'] = humidity;
-    return data;
+  factory Main.fromJson(Map<String, dynamic> json) {
+    return Main(
+      temp: json['temp'],
+      feelsLike: json['feels_like'],
+      tempMin: json['temp_min'],
+      tempMax: json['temp_max'],
+      pressure: json['pressure'],
+      humidity: json['humidity'],
+    );
   }
 }
 
-@HiveType(typeId: 4)
+@HiveType(typeId: 5)
 class Wind {
   @HiveField(0)
   double? speed;
@@ -210,34 +151,11 @@ class Wind {
 
   Wind({this.speed, this.deg});
 
-  Wind.fromJson(Map<String, dynamic> json) {
-    speed = json['speed'];
-    deg = json['deg'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['speed'] = speed;
-    data['deg'] = deg;
-    return data;
-  }
-}
-
-@HiveType(typeId: 5)
-class Rain {
-  @HiveField(0)
-  double? d1h;
-
-  Rain({this.d1h});
-
-  Rain.fromJson(Map<String, dynamic> json) {
-    d1h = json['1h'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['1h'] = d1h;
-    return data;
+  factory Wind.fromJson(Map<String, dynamic> json) {
+    return Wind(
+      speed: json['speed'],
+      deg: json['deg'],
+    );
   }
 }
 
@@ -248,14 +166,10 @@ class Clouds {
 
   Clouds({this.all});
 
-  Clouds.fromJson(Map<String, dynamic> json) {
-    all = json['all'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['all'] = all;
-    return data;
+  factory Clouds.fromJson(Map<String, dynamic> json) {
+    return Clouds(
+      all: json['all'],
+    );
   }
 }
 
@@ -274,21 +188,13 @@ class Sys {
 
   Sys({this.type, this.id, this.country, this.sunrise, this.sunset});
 
-  Sys.fromJson(Map<String, dynamic> json) {
-    type = json['type'];
-    id = json['id'];
-    country = json['country'];
-    sunrise = json['sunrise'];
-    sunset = json['sunset'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['type'] = type;
-    data['id'] = id;
-    data['country'] = country;
-    data['sunrise'] = sunrise;
-    data['sunset'] = sunset;
-    return data;
+  factory Sys.fromJson(Map<String, dynamic> json) {
+    return Sys(
+      type: json['type'],
+      id: json['id'],
+      country: json['country'],
+      sunrise: json['sunrise'],
+      sunset: json['sunset'],
+    );
   }
 }

@@ -8,7 +8,7 @@ part of 'wheather_model.dart';
 
 class WheaterModelAdapter extends TypeAdapter<WheaterModel> {
   @override
-  final int typeId = 0;
+  final int typeId = 1;
 
   @override
   WheaterModel read(BinaryReader reader) {
@@ -23,21 +23,20 @@ class WheaterModelAdapter extends TypeAdapter<WheaterModel> {
       main: fields[3] as Main?,
       visibility: fields[4] as int?,
       wind: fields[5] as Wind?,
-      rain: fields[6] as Rain?,
-      clouds: fields[7] as Clouds?,
-      dt: fields[8] as int?,
-      sys: fields[9] as Sys?,
-      timezone: fields[10] as int?,
-      id: fields[11] as int?,
-      name: fields[12] as String?,
-      cod: fields[13] as int?,
+      clouds: fields[6] as Clouds?,
+      dt: fields[7] as int?,
+      sys: fields[8] as Sys?,
+      timezone: fields[9] as int?,
+      id: fields[10] as int?,
+      name: fields[11] as String?,
+      cod: fields[12] as int?,
     );
   }
 
   @override
   void write(BinaryWriter writer, WheaterModel obj) {
     writer
-      ..writeByte(14)
+      ..writeByte(13)
       ..writeByte(0)
       ..write(obj.coord)
       ..writeByte(1)
@@ -51,20 +50,18 @@ class WheaterModelAdapter extends TypeAdapter<WheaterModel> {
       ..writeByte(5)
       ..write(obj.wind)
       ..writeByte(6)
-      ..write(obj.rain)
-      ..writeByte(7)
       ..write(obj.clouds)
-      ..writeByte(8)
+      ..writeByte(7)
       ..write(obj.dt)
-      ..writeByte(9)
+      ..writeByte(8)
       ..write(obj.sys)
-      ..writeByte(10)
+      ..writeByte(9)
       ..write(obj.timezone)
-      ..writeByte(11)
+      ..writeByte(10)
       ..write(obj.id)
-      ..writeByte(12)
+      ..writeByte(11)
       ..write(obj.name)
-      ..writeByte(13)
+      ..writeByte(12)
       ..write(obj.cod);
   }
 
@@ -81,7 +78,7 @@ class WheaterModelAdapter extends TypeAdapter<WheaterModel> {
 
 class CoordAdapter extends TypeAdapter<Coord> {
   @override
-  final int typeId = 1;
+  final int typeId = 2;
 
   @override
   Coord read(BinaryReader reader) {
@@ -118,7 +115,7 @@ class CoordAdapter extends TypeAdapter<Coord> {
 
 class WeatherAdapter extends TypeAdapter<Weather> {
   @override
-  final int typeId = 2;
+  final int typeId = 3;
 
   @override
   Weather read(BinaryReader reader) {
@@ -161,7 +158,7 @@ class WeatherAdapter extends TypeAdapter<Weather> {
 
 class MainAdapter extends TypeAdapter<Main> {
   @override
-  final int typeId = 3;
+  final int typeId = 4;
 
   @override
   Main read(BinaryReader reader) {
@@ -210,7 +207,7 @@ class MainAdapter extends TypeAdapter<Main> {
 
 class WindAdapter extends TypeAdapter<Wind> {
   @override
-  final int typeId = 4;
+  final int typeId = 5;
 
   @override
   Wind read(BinaryReader reader) {
@@ -241,40 +238,6 @@ class WindAdapter extends TypeAdapter<Wind> {
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is WindAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
-}
-
-class RainAdapter extends TypeAdapter<Rain> {
-  @override
-  final int typeId = 5;
-
-  @override
-  Rain read(BinaryReader reader) {
-    final numOfFields = reader.readByte();
-    final fields = <int, dynamic>{
-      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
-    };
-    return Rain(
-      d1h: fields[0] as double?,
-    );
-  }
-
-  @override
-  void write(BinaryWriter writer, Rain obj) {
-    writer
-      ..writeByte(1)
-      ..writeByte(0)
-      ..write(obj.d1h);
-  }
-
-  @override
-  int get hashCode => typeId.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is RainAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

@@ -8,8 +8,6 @@ class NewsService {
     try {
       Response response = await Dio().get(Api.getNews);
       if (response.statusCode == 200) {
-        print(response.statusCode);
-        print(response.data['data']);
         return right((response.data['data'] as List)
             .map((e) => Data.fromJson(e))
             .toList());
