@@ -12,3 +12,14 @@ class WheaterGetEvent extends WheatherEvent {
   List<Object?> get props => [];
 }
 
+class WheatherHDForecast extends WheatherEvent {
+  const WheatherHDForecast();
+  @override
+  List<Object?> get props => [];
+}
+
+class WheatherGetLocation extends WheatherEvent {
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
+}

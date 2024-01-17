@@ -21,15 +21,15 @@ class WheaterModelAdapter extends TypeAdapter<WheaterModel> {
       weather: (fields[1] as List?)?.cast<Weather>(),
       base: fields[2] as String?,
       main: fields[3] as Main?,
-      visibility: fields[4] as int?,
+      visibility: fields[4] as num?,
       wind: fields[5] as Wind?,
       clouds: fields[6] as Clouds?,
-      dt: fields[7] as int?,
+      dt: fields[7] as num?,
       sys: fields[8] as Sys?,
-      timezone: fields[9] as int?,
-      id: fields[10] as int?,
+      timezone: fields[9] as num?,
+      id: fields[10] as num?,
       name: fields[11] as String?,
-      cod: fields[12] as int?,
+      cod: fields[12] as num?,
     );
   }
 
@@ -87,8 +87,8 @@ class CoordAdapter extends TypeAdapter<Coord> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Coord(
-      lon: fields[0] as double?,
-      lat: fields[1] as double?,
+      lon: fields[0] as num?,
+      lat: fields[1] as num?,
     );
   }
 
@@ -124,7 +124,7 @@ class WeatherAdapter extends TypeAdapter<Weather> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Weather(
-      id: fields[0] as int?,
+      id: fields[0] as num?,
       main: fields[1] as String?,
       description: fields[2] as String?,
       icon: fields[3] as String?,
@@ -167,12 +167,12 @@ class MainAdapter extends TypeAdapter<Main> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Main(
-      temp: fields[0] as double?,
-      feelsLike: fields[1] as double?,
-      tempMin: fields[2] as double?,
-      tempMax: fields[3] as double?,
-      pressure: fields[4] as int?,
-      humidity: fields[5] as int?,
+      temp: fields[0] as num?,
+      feelsLike: fields[1] as num?,
+      tempMin: fields[2] as num?,
+      tempMax: fields[3] as num?,
+      pressure: fields[4] as num?,
+      humidity: fields[5] as num?,
     );
   }
 
@@ -216,8 +216,8 @@ class WindAdapter extends TypeAdapter<Wind> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Wind(
-      speed: fields[0] as double?,
-      deg: fields[1] as int?,
+      speed: fields[0] as num?,
+      deg: fields[1] as num?,
     );
   }
 
@@ -253,7 +253,7 @@ class CloudsAdapter extends TypeAdapter<Clouds> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Clouds(
-      all: fields[0] as int?,
+      all: fields[0] as num?,
     );
   }
 
@@ -287,11 +287,11 @@ class SysAdapter extends TypeAdapter<Sys> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Sys(
-      type: fields[0] as int?,
-      id: fields[1] as int?,
+      type: fields[0] as num?,
+      id: fields[1] as num?,
       country: fields[2] as String?,
-      sunrise: fields[3] as int?,
-      sunset: fields[4] as int?,
+      sunrise: fields[3] as num?,
+      sunset: fields[4] as num?,
     );
   }
 

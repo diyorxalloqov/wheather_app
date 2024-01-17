@@ -13,23 +13,23 @@ class WheaterModel {
   @HiveField(3)
   Main? main;
   @HiveField(4)
-  int? visibility;
+  num? visibility;
   @HiveField(5)
   Wind? wind;
   @HiveField(6)
   Clouds? clouds;
   @HiveField(7)
-  int? dt;
+  num? dt;
   @HiveField(8)
   Sys? sys;
   @HiveField(9)
-  int? timezone;
+  num? timezone;
   @HiveField(10)
-  int? id;
+  num? id;
   @HiveField(11)
   String? name;
   @HiveField(12)
-  int? cod;
+  num? cod;
 
   WheaterModel({
     this.coord,
@@ -69,9 +69,9 @@ class WheaterModel {
 @HiveType(typeId: 2)
 class Coord {
   @HiveField(0)
-  double? lon;
+  num? lon;
   @HiveField(1)
-  double? lat;
+  num? lat;
 
   Coord({this.lon, this.lat});
 
@@ -86,7 +86,7 @@ class Coord {
 @HiveType(typeId: 3)
 class Weather {
   @HiveField(0)
-  int? id;
+  num? id;
   @HiveField(1)
   String? main;
   @HiveField(2)
@@ -109,17 +109,17 @@ class Weather {
 @HiveType(typeId: 4)
 class Main {
   @HiveField(0)
-  double? temp;
+  num? temp;
   @HiveField(1)
-  double? feelsLike;
+  num? feelsLike;
   @HiveField(2)
-  double? tempMin;
+  num? tempMin;
   @HiveField(3)
-  double? tempMax;
+  num? tempMax;
   @HiveField(4)
-  int? pressure;
+  num? pressure;
   @HiveField(5)
-  int? humidity;
+  num? humidity;
 
   Main({
     this.temp,
@@ -145,9 +145,9 @@ class Main {
 @HiveType(typeId: 5)
 class Wind {
   @HiveField(0)
-  double? speed;
+  num? speed;
   @HiveField(1)
-  int? deg;
+  num? deg;
 
   Wind({this.speed, this.deg});
 
@@ -162,7 +162,7 @@ class Wind {
 @HiveType(typeId: 6)
 class Clouds {
   @HiveField(0)
-  int? all;
+  num? all;
 
   Clouds({this.all});
 
@@ -176,15 +176,15 @@ class Clouds {
 @HiveType(typeId: 7)
 class Sys {
   @HiveField(0)
-  int? type;
+  num? type;
   @HiveField(1)
-  int? id;
+  num? id;
   @HiveField(2)
   String? country;
   @HiveField(3)
-  int? sunrise;
+  num? sunrise;
   @HiveField(4)
-  int? sunset;
+  num? sunset;
 
   Sys({this.type, this.id, this.country, this.sunrise, this.sunset});
 

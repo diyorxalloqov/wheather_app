@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wheather_news_app/view/categories/wheather.dart';
-import 'package:wheather_news_app/view/widget/banner.dart';
+import 'package:wheather_news_app/view/screens/detail_page.dart';
+import 'package:wheather_news_app/view/widget/ads/banner.dart';
+import 'package:wheather_news_app/view/widget/bottom_sheet_widget.dart';
+import 'package:wheather_news_app/view_model/bloc/wheather/wheather_bloc.dart';
 import '../categories/news_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -80,6 +84,32 @@ class _MainPageState extends State<HomePage> {
           ),
         ],
       ),
+      floatingActionButton: _currentindex == 0
+          ? Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                FloatingActionButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const DetailPage()));
+                    },
+                    child: const Icon(Icons.menu)),
+                const SizedBox(width: 20),
+                FloatingActionButton(
+                    onPressed: () {
+                      context
+                          .read<WheatherBloc>()
+                          .add(const WheatherHDForecast());
+                      showModalBottomSheet(
+                          context: context,
+                          builder: (context) => const BottomSheetWidget());
+                    },
+                    child: const Icon(Icons.add)),
+              ],
+            )
+          : const SizedBox.shrink(),
     );
   }
 }
